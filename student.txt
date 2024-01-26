@@ -1,0 +1,43 @@
+# Create 'student' table with the specified attribute names and data types with their constraints 
+CREATE TABLE student(
+    stu_num CHAR(6),
+    stu_sname VARCHAR(15),
+    stu_fname VARCHAR(15),
+    stu_initial CHAR(1),
+    stu_startdate DATE,
+    course_code CHAR(3),
+    proj_num INT,
+    PRIMARY KEY (stu_num)
+);
+
+# Insert the given data values into the table 
+INSERT INTO student(stu_num, stu_sname, stu_fname, stu_initial, stu_startdate, course_code, proj_num)
+	VALUES 
+		('01', 'Snow', 'Jon', 'E', '2014-04-05', '201', 6),
+    		('02', 'Stark', 'Arya', 'C', '2017-07-12', '305', 11),
+    		('03', 'Lannister', 'Jamie', 'C', '2012-09-05', '101', 2),
+    		('04', 'Lannister', 'Cercei', 'J', '2012-09-05', '101', 2), 
+    		('05', 'Greyjoy', 'Theon', 'I', '2015-12-09', '402', 14),
+    		('06', 'Tyrell', 'Margaery', 'Y', '2017-07-12', '305', 10), 
+    		('07', 'Baratheon', 'Tommen', 'R', '2019-06-13', '201', 5);
+
+# Returns all records with a specified 'course_code'
+SELECT * FROM student
+WHERE course_code = '305';
+
+# Changes the 'course_code' for a specified student  
+UPDATE student
+SET course_code = '304'
+WHERE stu_num = '07';
+
+# Deletes the row of data for the specified student 
+DELETE FROM student
+WHERE stu_fname = 'Jamie' AND stu_sname = 'Lannister' AND stu_startdate = '2012-09-05' AND course_code = '101' AND proj_num = 2;
+
+# Changes the 'proj_num' for all students with a specified 'stu_startdate' and 'course_code'
+UPDATE student 
+SET proj_num = 14 
+WHERE stu_startdate < '2016-01-01' AND course_code = '201';
+
+# Deletes the 'student' table entirely 
+DROP TABLE student;
